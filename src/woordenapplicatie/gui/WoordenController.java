@@ -9,6 +9,9 @@ package woordenapplicatie.gui;
 
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -80,5 +83,12 @@ public class WoordenController implements Initializable {
     private void concordatieAction(ActionEvent event) {
          throw new UnsupportedOperationException("Not supported yet."); 
     }
-   
+
+    private Collection<String> getWords() {
+        String input = taInput.getText();
+
+        String[] split = input.toLowerCase().split(",?(^|\\s)");
+
+        return new ArrayList<>(Arrays.asList(split));
+    }
 }
