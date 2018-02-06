@@ -9,7 +9,12 @@ package woordenapplicatie.gui;
 
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,8 +67,9 @@ public class WoordenController implements Initializable {
     }
     
     @FXML
-    private void aantalAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+    private void aantalAction(ActionEvent event)
+    {
+         System.out.println(countWords(taInput.getText()));
     }
 
     @FXML
@@ -80,5 +86,39 @@ public class WoordenController implements Initializable {
     private void concordatieAction(ActionEvent event) {
          throw new UnsupportedOperationException("Not supported yet."); 
     }
-   
+
+    public int countWords(String s){
+
+        int wordCount = 0;
+
+        boolean word = false;
+        int endOfLine = s.length() - 1;
+
+        for (int i = 0; i < s.length(); i++) {
+            // if the char is a letter, word = true.
+            if (Character.isLetter(s.charAt(i)) && i != endOfLine) {
+                word = true;
+                // if char isn't a letter and there have been letters before,
+                // counter goes up.
+            } else if (!Character.isLetter(s.charAt(i)) && word) {
+                wordCount++;
+                word = false;
+                // last word of String; if it doesn't end with a non letter, it
+                // wouldn't count without this.
+            } else if (Character.isLetter(s.charAt(i)) && i == endOfLine) {
+                wordCount++;
+            }
+        }
+        return wordCount;
+    }
+
+    private Map<String, Long> frequencieMap;
+
+
+    public void frequencieWord(String s)
+    {
+        Stream<String> stream = Stream.of(taInput.getText().toLowerCase().split("\\W+")).parallel();
+        frequencieMap = stream.collect(Collectors.groupingBy(String::toString, Collectors.counting()));
+        System.out.println(frequencieMap);
+    }
 }
