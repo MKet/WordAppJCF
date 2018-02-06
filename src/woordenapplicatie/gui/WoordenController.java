@@ -9,7 +9,13 @@ package woordenapplicatie.gui;
 
 
 import java.net.URL;
+<<<<<<< HEAD
 import java.util.Map;
+=======
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+>>>>>>> fcbc8ec9d840ab5f3fae5e2caa1b131413307384
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -87,6 +93,7 @@ public class WoordenController implements Initializable {
          throw new UnsupportedOperationException("Not supported yet."); 
     }
 
+<<<<<<< HEAD
     public int countWords(String s){
 
         int wordCount = 0;
@@ -120,5 +127,13 @@ public class WoordenController implements Initializable {
         Stream<String> stream = Stream.of(taInput.getText().toLowerCase().split("\\W+")).parallel();
         frequencieMap = stream.collect(Collectors.groupingBy(String::toString, Collectors.counting()));
         System.out.println(frequencieMap);
+=======
+    private Collection<String> getWords() {
+        String input = taInput.getText();
+
+        String[] split = input.toLowerCase().split(",?(^|\\s)");
+
+        return new ArrayList<>(Arrays.asList(split));
+>>>>>>> fcbc8ec9d840ab5f3fae5e2caa1b131413307384
     }
 }
