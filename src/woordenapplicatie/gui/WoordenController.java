@@ -11,17 +11,10 @@ package woordenapplicatie.gui;
 import java.net.URL;
 
 import java.util.*;
-
-<<<<<<< HEAD
-=======
 import java.util.Map;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.ResourceBundle;
-import java.util.concurrent.ConcurrentHashMap;
->>>>>>> 2a8d87035eb2d687c878ac67e386a8751a50dec7
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javafx.event.ActionEvent;
@@ -70,10 +63,11 @@ public class WoordenController implements Initializable {
     @FXML
     private TextArea taOutput;
 
-    private Map<String, Long> frequencieMap;
+    private Map<String, Integer> frequencieMap;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        frequencieMap = new HashMap<>();
         taInput.setText(DEFAULT_TEXT);
     }
     
@@ -108,23 +102,16 @@ public class WoordenController implements Initializable {
          throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-<<<<<<< HEAD
-=======
-    public void frequencieWord(String s) {
-        Stream<String> stream = Stream.of(taInput.getText().toLowerCase().split("\\W+")).parallel();
-        frequencieMap = stream.collect(Collectors.groupingBy(String::toString, Collectors.counting()));
-        System.out.println(frequencieMap);
+
+    public String frequencieWord() {
+        for (String w : getWords()){
+            Integer n = frequencieMap.get(w);
+            n = (n == null) ? 1 : ++n;
+            frequencieMap.put(w,n);
+        }
+        return frequencieMap.toString();
     }
 
-    private List<String> getWords() {
-        String input = taInput.getText();
-
-        String[] split = input.toLowerCase().split(",?(^|\\s)+");
-
-        return new ArrayList<>(Arrays.asList(split));
-    }
-
->>>>>>> 2a8d87035eb2d687c878ac67e386a8751a50dec7
     public int countWords(String s){
 
         int wordCount = 0;
@@ -150,18 +137,6 @@ public class WoordenController implements Initializable {
         return wordCount;
     }
 
-<<<<<<< HEAD
-    private Map<String, Integer> frequencieMap = new HashMap<>();
-
-    public String frequencieWord() {
-        for (String w : getWords()){
-            Integer n = frequencieMap.get(w);
-            n = (n == null) ? 1 : ++n;
-            frequencieMap.put(w,n);
-        }
-        return frequencieMap.toString();
-    }
-
     private List<String> getWords() {
         String input = taInput.getText();
 
@@ -169,6 +144,5 @@ public class WoordenController implements Initializable {
 
         return new ArrayList<>(Arrays.asList(split));
     }
-=======
->>>>>>> 2a8d87035eb2d687c878ac67e386a8751a50dec7
+
 }
