@@ -9,10 +9,8 @@ package woordenapplicatie.gui;
 
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -71,7 +69,16 @@ public class WoordenController implements Initializable {
 
     @FXML
     private void sorteerAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+        List<String> words = getWords();
+
+        words.sort(Collections.reverseOrder());
+
+        StringBuilder wordString = new StringBuilder();
+        for (String word : words)
+            wordString.append(" ").append(word);
+
+        taOutput.setText(wordString.toString());
+
     }
 
     @FXML
@@ -84,7 +91,7 @@ public class WoordenController implements Initializable {
          throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-    private Collection<String> getWords() {
+    private List<String> getWords() {
         String input = taInput.getText();
 
         String[] split = input.toLowerCase().split(",?(^|\\s)");
