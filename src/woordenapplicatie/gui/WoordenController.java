@@ -9,18 +9,11 @@ package woordenapplicatie.gui;
 
 
 import java.net.URL;
-<<<<<<< HEAD
-import java.util.Map;
-=======
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
->>>>>>> fcbc8ec9d840ab5f3fae5e2caa1b131413307384
-import java.util.ResourceBundle;
-import java.util.concurrent.ConcurrentHashMap;
+
+import java.util.*;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -75,7 +68,7 @@ public class WoordenController implements Initializable {
     @FXML
     private void aantalAction(ActionEvent event)
     {
-         System.out.println(countWords(taInput.getText()));
+         taOutput.setText("Word count: " + countWords(taInput.getText()));
     }
 
     @FXML
@@ -84,8 +77,9 @@ public class WoordenController implements Initializable {
     }
 
     @FXML
-    private void frequentieAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+    private void frequentieAction(ActionEvent event)
+    {
+        taOutput.setText(frequencieWord());
     }
 
     @FXML
@@ -93,7 +87,6 @@ public class WoordenController implements Initializable {
          throw new UnsupportedOperationException("Not supported yet."); 
     }
 
-<<<<<<< HEAD
     public int countWords(String s){
 
         int wordCount = 0;
@@ -119,21 +112,22 @@ public class WoordenController implements Initializable {
         return wordCount;
     }
 
-    private Map<String, Long> frequencieMap;
+    private Map<String, Integer> frequencieMap = new HashMap<>();
 
+    public String frequencieWord() {
+        for (String w : getWords()){
+            Integer n = frequencieMap.get(w);
+            n = (n == null) ? 1 : ++n;
+            frequencieMap.put(w,n);
+        }
+        return frequencieMap.toString();
+    }
 
-    public void frequencieWord(String s)
-    {
-        Stream<String> stream = Stream.of(taInput.getText().toLowerCase().split("\\W+")).parallel();
-        frequencieMap = stream.collect(Collectors.groupingBy(String::toString, Collectors.counting()));
-        System.out.println(frequencieMap);
-=======
-    private Collection<String> getWords() {
+    private List<String> getWords() {
         String input = taInput.getText();
 
-        String[] split = input.toLowerCase().split(",?(^|\\s)");
+        String[] split = input.toLowerCase().split(",?(^|\\s)+");
 
         return new ArrayList<>(Arrays.asList(split));
->>>>>>> fcbc8ec9d840ab5f3fae5e2caa1b131413307384
     }
 }
