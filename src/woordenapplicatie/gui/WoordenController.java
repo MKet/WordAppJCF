@@ -99,7 +99,37 @@ public class WoordenController implements Initializable {
 
     @FXML
     private void concordatieAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+        String input = taInput.getText();
+
+        HashMap<String, ArrayList<Integer>> map = new HashMap<>();
+
+        String[] split = input.toLowerCase().split("\n+");
+
+        for (int i = 0; i < split.length; i++) {
+            String s = split[i];
+            String[] wordSplit = s.split(",?\\s+");
+
+            for (String word : wordSplit) {
+                ArrayList<Integer> integers = map.computeIfAbsent(word, k -> new ArrayList<>());
+
+                integers.add(i+1);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        map.forEach((k, integers) -> {
+            sb.append(k);
+            sb.append(" [ ");
+
+            for (int i : integers) {
+                sb.append(i);
+                sb.append(" ");
+            }
+            sb.append(" ]\n");
+        } );
+
+        taOutput.setText(sb.toString());
     }
 
 
