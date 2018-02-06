@@ -12,6 +12,16 @@ import java.net.URL;
 
 import java.util.*;
 
+<<<<<<< HEAD
+=======
+import java.util.Map;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.ResourceBundle;
+import java.util.concurrent.ConcurrentHashMap;
+>>>>>>> 2a8d87035eb2d687c878ac67e386a8751a50dec7
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javafx.event.ActionEvent;
@@ -60,6 +70,8 @@ public class WoordenController implements Initializable {
     @FXML
     private TextArea taOutput;
 
+    private Map<String, Long> frequencieMap;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         taInput.setText(DEFAULT_TEXT);
@@ -73,7 +85,16 @@ public class WoordenController implements Initializable {
 
     @FXML
     private void sorteerAction(ActionEvent event) {
-         throw new UnsupportedOperationException("Not supported yet."); 
+        List<String> words = getWords();
+
+        words.sort(Collections.reverseOrder());
+
+        StringBuilder wordString = new StringBuilder();
+        for (String word : words)
+            wordString.append(" ").append(word);
+
+        taOutput.setText(wordString.toString());
+
     }
 
     @FXML
@@ -87,6 +108,23 @@ public class WoordenController implements Initializable {
          throw new UnsupportedOperationException("Not supported yet."); 
     }
 
+<<<<<<< HEAD
+=======
+    public void frequencieWord(String s) {
+        Stream<String> stream = Stream.of(taInput.getText().toLowerCase().split("\\W+")).parallel();
+        frequencieMap = stream.collect(Collectors.groupingBy(String::toString, Collectors.counting()));
+        System.out.println(frequencieMap);
+    }
+
+    private List<String> getWords() {
+        String input = taInput.getText();
+
+        String[] split = input.toLowerCase().split(",?(^|\\s)+");
+
+        return new ArrayList<>(Arrays.asList(split));
+    }
+
+>>>>>>> 2a8d87035eb2d687c878ac67e386a8751a50dec7
     public int countWords(String s){
 
         int wordCount = 0;
@@ -112,6 +150,7 @@ public class WoordenController implements Initializable {
         return wordCount;
     }
 
+<<<<<<< HEAD
     private Map<String, Integer> frequencieMap = new HashMap<>();
 
     public String frequencieWord() {
@@ -130,4 +169,6 @@ public class WoordenController implements Initializable {
 
         return new ArrayList<>(Arrays.asList(split));
     }
+=======
+>>>>>>> 2a8d87035eb2d687c878ac67e386a8751a50dec7
 }
