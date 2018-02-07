@@ -79,9 +79,9 @@ public class WoordenController implements Initializable {
 
     @FXML
     private void sorteerAction(ActionEvent event) {
-        List<String> words = getWords();
+        final Set<String> words = getWordAsSet();
 
-        words.sort(Collections.reverseOrder());
+
 
         StringBuilder wordString = new StringBuilder();
         for (String word : words)
@@ -167,12 +167,25 @@ public class WoordenController implements Initializable {
         return wordCount;
     }
 
-    private List<String> getWords() {
-        String input = taInput.getText();
-
-        String[] split = input.toLowerCase().split(",?(^|\\s)+");
+    private List<String> getWordsAsList() {
+        String[] split = getWords();
 
         return new ArrayList<>(Arrays.asList(split));
+    }
+
+    private String[] getWords() {
+        String input = taInput.getText();
+
+        return input.toLowerCase().split(",?(^|\\s)+");
+    }
+
+    private Set<String> getWordAsSet() {
+        String[] split = getWords();
+
+        SortedSet<String> words = new TreeSet<>(Collections.reverseOrder());
+        words.addAll(Arrays.asList(split));
+
+        return words;
     }
 
 }
