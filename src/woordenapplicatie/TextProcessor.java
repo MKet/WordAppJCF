@@ -84,10 +84,8 @@ public class TextProcessor {
     }
 
     public Set<String> getWordAsSet() {
-        String[] split = getWords();
-
         SortedSet<String> words = new TreeSet<>(Collections.reverseOrder());
-        words.addAll(Arrays.asList(split));
+        words.addAll(getWordsAsList());
 
         return words;
     }
