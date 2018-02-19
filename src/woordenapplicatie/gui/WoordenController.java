@@ -10,6 +10,7 @@ package woordenapplicatie.gui;
 
 import java.net.URL;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Map;
 import java.util.ArrayList;
@@ -74,25 +75,38 @@ public class WoordenController implements Initializable {
         TextProcessor processor = new TextProcessor(taInput.getText());
         long start = System.currentTimeMillis();
         taOutput.setText("Word count: " + processor.countWords(taInput.getText()));
-        long end = System.currentTimeMillis();
+        visualise(start);
     }
 
     @FXML
     private void sorteerAction(ActionEvent event) {
         TextProcessor processor = new TextProcessor(taInput.getText());
+        long start = System.currentTimeMillis();
         taOutput.setText(processor.getSortedWords());
+        visualise(start);
     }
 
     @FXML
     private void frequentieAction(ActionEvent event) {
         TextProcessor processor = new TextProcessor(taInput.getText());
+        long start = System.currentTimeMillis();
         taOutput.setText(processor.frequentieWord());
+        visualise(start);
     }
 
     @FXML
     private void concordatieAction(ActionEvent event) {
         TextProcessor processor = new TextProcessor(taInput.getText());
+        long start = System.currentTimeMillis();
         taOutput.setText(processor.getConcordance());
+        visualise(start);
+    }
+
+    private static void visualise(long start) {
+        long end = System.currentTimeMillis();
+        long nb_miliseconds = (end - start);
+
+        System.out.println("time = " + nb_miliseconds + "ms");
     }
 
 }
