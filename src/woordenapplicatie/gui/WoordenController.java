@@ -64,15 +64,13 @@ public class WoordenController implements Initializable {
     @FXML
     private TextArea taOutput;
 
-<<<<<<< HEAD
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Map<String, Integer>frequencieMap = new HashMap<>();
-=======
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
->>>>>>> 0faa9cc71dca8279ef4b8da50ea1b450c8a45bba
         taInput.setText(DEFAULT_TEXT);
     }
     
@@ -100,8 +98,6 @@ public class WoordenController implements Initializable {
         taOutput.setText(processor.getConcordance());
     }
 
-
-<<<<<<< HEAD
     public String frequencieWord() {
         StringBuilder sb = new StringBuilder();
         for (String w : getWords()){
@@ -118,14 +114,12 @@ public class WoordenController implements Initializable {
         return sb.toString();
     }
 
-    public int countWords(String s){
+    public int countWords(String s) {
 
         int wordCount = 0;
 
         boolean word = false;
         int endOfLine = s.length() - 1;
-=======
->>>>>>> 0faa9cc71dca8279ef4b8da50ea1b450c8a45bba
-
+    }
 
 }
