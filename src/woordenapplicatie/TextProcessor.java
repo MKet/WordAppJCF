@@ -80,7 +80,7 @@ public class TextProcessor {
     public String[] getWords() {
         String input = Text;
 
-        return input.toLowerCase().split(",?(^|\\s)+");
+        return input.split(",?(^|\\s)+");
     }
 
     public Set<String> getWordAsSet() {
