@@ -26,6 +26,6 @@ Laptop 2 (gemiddelde van meerdere testen):
   
   Complexiteit met de Big O notatie (schatting)
   - Aantal: O(n)
-  - Sorteren: O(n x 3)
-  - Frequentie: O(n x 2)
-  - Concordantie: O(n x 4)
+  - Sorteren: O(n)
+  - Frequentie: O(n)
+  - Concordantie: O(n)
