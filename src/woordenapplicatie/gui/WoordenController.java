@@ -74,7 +74,7 @@ public class WoordenController implements Initializable {
     private void aantalAction(ActionEvent event) {
         TextProcessor processor = new TextProcessor(taInput.getText());
         long start = System.currentTimeMillis();
-        taOutput.setText("Word count: " + processor.countWords(taInput.getText()));
+        taOutput.setText("Word count: " + processor.countWords());
         visualise(start);
     }
 

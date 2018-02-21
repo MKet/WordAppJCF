@@ -25,7 +25,7 @@ public class TextProcessor {
         return frequentieMap.toString();
     }
 
-    public int countWords(String s){
+    public int countWords(){
         return getWords().length;
     }
 
